@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             apiStatus.classList.remove('hidden');
 
             // --- CONNEXION REELLE A L'API BACKEND (ROUTE 3) ---
-            const response = await fetch('https://54-247-248-45.sslip.io:5000/api/v1/activation/validate', {
+            const response = await fetch('https://54-247-248-45.sslip.io/api/v1/activation/validate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ activationCode: codeValue, tf_trackingNumber: tf_trackingNumber})
