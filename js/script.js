@@ -47,11 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ endpoint: '/api/v1/vendor/verify', 
-                    data: { trackingNumber: trackingValue,securityCode: codeValue}
+                    donnees: { trackingNumber: trackingValue,securityCode: codeValue}
                 })
             });
 
             const data = await response.json();
+            console.log(data);
+            
 
             if (response.ok && data.success) {
                 // Stockage des données reçues pour la page suivante
