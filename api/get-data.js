@@ -1,23 +1,28 @@
 export default async function handler(request, response) {
-  // Optionnel : On vérifie que la méthode est bien un POST
-  if (request.method !== 'POST') {
-    return response.status(405).json({ error: 'Méthode non autorisée. Utilisez POST.' });
-  }
 
-  const urlApiTierce = "http://54.247.248.45:5000/api/v1/vendor/verify"; // Votre API non sécurisée
+
+  const baseApiUrl = "http://54.247.248.45:5000"; // Votre API non sécurisée
 
   try {
     // Récupération des données JSON envoyées par votre frontend
-    const corpsRecu = request.body;
+    const {endpoint, donnees} = request.body;
+
+        if (!endpoint) {
+      return response.status(400).json({ error: "L'endpoint est requis." });
+    }
+
+    // On reconstruit l'URL finale (Ex: http://192.168.1)
+    const urlApiFinal = `${baseApiUrl}${endpoint}`;
+
 
     // Transfert des données vers l'API tierce en HTTP
-    const apiResponse = await fetch(urlApiTierce, {
-      method: 'POST',
+    const apiResponse = await fetch(urlApiFinal, {
+      method: request.method,
       headers: {
         'Content-Type': 'application/json'
         // Ajoutez ici d'autres en-têtes si l'API tierce demande une clé (ex: Authorization)
       },
-      body: JSON.stringify(corpsRecu) // On retransmet le JSON
+      body: JSON.stringify(donnees) // On retransmet le JSON
     });
 
     if (!apiResponse.ok) {
@@ -34,4 +39,3 @@ export default async function handler(request, response) {
     return response.status(500).json({ error: error.message });
   }
 }
-
