@@ -46,9 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    trackingNumber: trackingValue,
-                    securityCode: codeValue
+                body: JSON.stringify({ endpoint: '/api/v1/vendor/verify', 
+                    data: { trackingNumber: trackingValue,securityCode: codeValue}
                 })
             });
 
