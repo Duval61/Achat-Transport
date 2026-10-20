@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat-Transport - Transaction Confirmée</title>      
+    <link rel="stylesheet" href="styles/confirmation.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="logo">🤝 Achat<span> Transport</span></a>
+            <nav class="nav-links">
+                <a href="#how-it-works" class="btn-primary commentcamarche">Mon Espace Vendeur</a>
+                <a href="index.html" class="btn-primary">Déconnexion</a>
+            </nav>  
+        </div>
+    </header>
+
+    <!-- Contenu Principal -->
+    <main class="dashboard-section verification-page-wrapper">
+        <div class="verification-container-90">
+            <section class="shadow-card text-center" style="padding: 50px 40px;">
+                <span class="badge-status" style="background-color: #d1fae5; color: #065f46; font-size: 0.9rem; padding: 6px 16px;">✨ Opération Sécurisée</span>
+                <h1 style="color: var(--brand-color); margin-top: 20px; font-size: 2.2rem;">Votre collecte est programmée !</h1>
+                <p class="subtitle" style="margin-bottom: 30px;">Un agent Achat-Transport est officiellement affecté à votre dossier.</p>
+                
+                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 24px; border-radius: 8px; max-width: 500px; margin: 0 auto 30px auto; text-align: left;">
+                    <p style="margin-bottom: 12px;">💵 <strong>Montant à recevoir :</strong> <span id="prixTotal">prix</span> €( <span id="prix"></span> € Vente + 100 € Restituton d'activation)</p>
+                    <p style="margin-bottom: 12px;">🔑 <strong>Code de dépôt enregistré :</strong> <code id="display-code" style="background-color: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-weight: 600;">Chargement...</code></p>
+                    <p>🕒 <strong>Prochaine étape :</strong> Présentez votre article à notre agent lors de son passage. Il effectuera le versement instantanément sur place.</p>
+                </div>
+
+                <!-- Zone des actions (Boutons côte à côte) -->
+                <div class="action-buttons-group">
+                    <button onclick="window.print()" class="btn-submit" style="width: auto; padding: 14px 32px; background-color: #64748b;">🖨️ Imprimer / Enregistrer le reçu</button>
+                    <a href="index.html" class="btn-submit btn-accent" style="text-decoration: none; display: inline-block; width: auto; padding: 14px 32px;">Retour à l'accueil</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Achat-Transport. Espace Vendeur Sécurisé.</p>
+        </div>
+    </footer>
+
+    <!-- Script de récupération dynamique de la session -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const displayCodeElement = document.getElementById('display-code');
+            const savedCode = sessionStorage.getItem('Achat-Transport_activationCode');
+            const transaction = JSON.parse(sessionStorage.getItem('tf_transactionDetails'));
+
+            const priceTotal = parseFloat(transaction.price) + 100
+            
+            document.getElementById('prix').textContent = transaction.price
+            document.getElementById('prixTotal').textContent = priceTotal
+
+            console.log(transaction);
+            
+
+
+            if (savedCode) {
+                displayCodeElement.textContent = savedCode;
+            } else {
+                displayCodeElement.textContent = "**********";
+                displayCodeElement.style.color = "var(--error-color)";
+            }
+        });
+    </script>
+
+        <!-- ==========================================================================
+       WIDGET CHAT SERVICE CLIENTELE FLOUTÉ
+       ========================================================================== -->
+    <div id="Achat-Transport-chat-widget" class="chat-widget-container">
+        <!-- Bulle d'activation flottante -->
+        <button id="chat-trigger-btn" class="chat-trigger-button">
+            <span class="chat-icon-open">💬</span>
+            <span class="chat-icon-close hidden">✖</span>
+        </button>
+
+        <!-- Fenêtre de messagerie -->
+        <div id="chat-window" class="chat-window-box hidden">
+            <div class="chat-window-header">
+                <div class="chat-agent-avatar">🤝</div>
+                <div>
+                    <h4>Assistance Achat-Transport</h4>
+                    <p class="chat-agent-status">● En ligne</p>
+                </div>
+            </div>
+            
+            <!-- Zone d'affichage des messages -->
+            <div id="chat-messages-body" class="chat-messages-container">
+                <div class="message-bubble agent-message">
+                  <!--   Bonjour ! Comment puis-je vous aider aujourd'hui concernant la planification de la collecte de votre colis ?  -->              </div>
+            </div>
+
+            <!-- Formulaire d'envoi -->
+            <form id="chat-input-form" class="chat-footer-form">
+               <textarea id="chat-user-text" placeholder="Écrivez votre message..." required rows="1"></textarea>
+                <button type="submit" class="chat-send-btn">➤</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script src="js/chat.js"></script>
+
+</body>
+</html>

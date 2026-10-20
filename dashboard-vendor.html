@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat-Transport- Accueil Vendeur & Planification</title>
+    <link rel="stylesheet" href="styles/dashboard_style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+
+
+
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="logo">🤝 Achat<span> Transport</span></a>
+            <nav class="nav-links">
+                <a href="#how-it-works" class="btn-primary commentcamarche">Mon Espace Vendeur</a>
+                <a href="index.html" class="btn-primary">Déconnexion</a>
+            </nav>  
+        </div>
+    </header>
+
+    <!-- Section Principale en 2 Colonnes -->
+    <main class="dashboard-section">
+        <div class="container dashboard-grid">
+            
+            <!-- SECTION 1 : Récapitulatif de la Vente -->
+            <section class="dashboard-col shadow-card">
+                <div class="card-header">
+                    <span class="badge-status">Fonds Séquestrés</span>
+                    <h2>Détails de la transaction</h2>
+                </div>
+                
+                <div class="transaction-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Site de vente</span>
+                        <strong class="detail-value text-highlight">Leboncoin</strong>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Article</span>
+                        <strong class="detail-value">Vélo de course Scott Speedster</strong>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Prix de l'article</span>
+                        <strong class="detail-value">450,00 €</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span class="detail-label">Frais de transport (Payé)</span>
+                        <strong class="detail-value frais">00,00 €</strong>
+                    </div>
+
+                    
+                    
+                    <div class="detail-item total-box">
+                        <span class="detail-label">Montant payé par l'acheteur <br></span>
+                        <strong class="detail-value price-tag">450,00 €</strong>
+                    </div>
+                </div>
+
+                <div class="info-alert">
+                    <p>💡 <strong>Garantie Achat-Transport:</strong> L'acheteur a déjà versé cette somme. Notre agent vous la remettra en main propre lors de la collecte de l'article selon le mode choisi.</p>
+                </div>
+            </section>
+            
+            <!-- SECTION 2 : Formulaire de Collecte & Informations Acheteur -->
+            <section class="dashboard-col shadow-card" >
+                <div class="card-header">
+                    <h2>Informations de collecte</h2>
+                    <p class="subtitle">Complétez ces détails pour finaliser le passage de l'agent</p>
+                </div>
+
+                <form id="collection-details-form" novalidate>
+                    
+                    <fieldset class="form-section">
+                        <legend>Profil du vendeur</legend>
+                        
+                        <div class="form-group">
+                            <label for="buyer-name">Nom complet</label>
+                            <input type="text" id="buyer-name" placeholder="Ex: Jean Dupont" required>
+                            <span class="error-message" id="buyer-name-error"></span>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="buyer-phone">Numéro de téléphone</label>
+                                <input type="tel" id="buyer-phone" placeholder="Ex: 06 12 34 56 78" maxlength="13" minlength="10" required>
+                                <span class="error-message" id="buyer-phone-error"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="buyer-email">Adresse e-mail</label>
+                                <input type="email" id="buyer-email" placeholder="Ex: jean.dupont@email.com" required>
+                                <span class="error-message" id="buyer-email-error"></span>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-section">
+                        <legend>Rendez-vous de récupération</legend>
+
+                        <div class="form-group">
+                            <label for="pickup-address">Adresse exacte du lieu de collecte</label>
+                            <input id="pickup-address" rows="2" placeholder="Ex: 14 Rue des Lilas, Escalier B, 75020 Paris" required>
+                            <span class="error-message" id="pickup-address-error"></span>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="pickup-date">Date de collecte</label>
+                                <input type="date" id="pickup-date" required>
+                                <span class="error-message" id="pickup-date-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pickup-time">Heure de collecte</label>
+                                <input type="time" id="pickup-time" required>
+                                <span class="error-message" id="pickup-time-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="payment-method">Mode de règlement à la collecte</label>
+                            <select id="payment-method" required>
+                                <option value="">-- Choisir une option --</option>
+                                <option value="especes">Espèces</option>
+                                <option value="virement">Virement bancaire instantané</option>
+                                <option value="cheque">Chèque</option>
+                            </select>
+                            <span class="error-message" id="payment-method-error"></span>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn-submit btn-accent">Valider et planifier la collecte</button>
+                </form>
+
+                <div id="dashboard-api-status" class="status-box hidden"></div>
+            </section>
+
+
+            
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Achat-Transport. Espace Vendeur Sécurisé.</p>
+        </div>
+    </footer>
+
+
+
+        <!-- ... Reste du code HTML inchangé ... -->
+
+
+    <!-- NOUVEAU : Widget Pop-up / Fenêtre Modale pour le Mot de passe -->
+    <div id="password-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>🔒 Sécurisez votre accès</h3>
+                <p>Définissez un mot de passe pour revenir sur cet espace et suivre l'avancée de votre collecte.</p>
+            </div>
+            <form id="modal-password-form" novalidate>
+                <div class="form-group">
+                    <label for="new-password">Mot de passe (6 caractères min.)</label>
+                    <input type="password" id="new-password" placeholder="••••••••" minlength="6" maxlength="45" required>
+                    <span class="error-message" id="password-error"></span>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="btn-modal-cancel" class="btn-cancel">Annuler</button>
+                    <button type="submit" class="btn-submit btn-accent">Créer le compte et Continuer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+      <!-- ==========================================================================
+       WIDGET CHAT SERVICE CLIENTELE FLOUTÉ
+       ========================================================================== -->
+    <div id="Achat-Transport-chat-widget" class="chat-widget-container">
+        <!-- Bulle d'activation flottante -->
+        <button id="chat-trigger-btn" class="chat-trigger-button">
+            <span class="chat-icon-open">💬</span>
+            <span class="chat-icon-close hidden">✖</span>
+        </button>
+
+        <!-- Fenêtre de messagerie -->
+        <div id="chat-window" class="chat-window-box hidden">
+            <div class="chat-window-header">
+                <div class="chat-agent-avatar">🤝</div>
+                <div>
+                    <h4>Assistance Achat-Transport</h4>
+                    <p class="chat-agent-status">● En ligne</p>
+                </div>
+            </div>
+            
+            <!-- Zone d'affichage des messages -->
+            <div id="chat-messages-body" class="chat-messages-container">
+                <div class="message-bubble agent-message">
+                  <!--   Bonjour ! Comment puis-je vous aider aujourd'hui concernant la planification de la collecte de votre colis ?  -->              </div>
+            </div>
+
+            <!-- Formulaire d'envoi -->
+            <form id="chat-input-form" class="chat-footer-form">
+               <textarea id="chat-user-text" placeholder="Écrivez votre message..." required rows="1"></textarea>
+                <button type="submit" class="chat-send-btn">➤</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="js/dashboard.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>
+
+

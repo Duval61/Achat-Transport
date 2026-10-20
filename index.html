@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat-Transport - Espace Vendeur & Collecte Sécurisée</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="logo">🤝 Achat<span> Transport</span></a>
+            <nav class="nav-links">
+                <a href="#how-it-works" class="btn-primary commentcamarche">Comment ça marche</a>
+                <a href="#step-1-card" class="btn-primary">Planifier</a>
+            </nav>  
+        </div>
+    </header>
+
+    <!-- Hero Section & Formulaire dynamique -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Vous vendez un objet ? <span>Nous venons vous payer et le récupérer.</span></h1>
+                <p>L'acheteur a déposé les fonds sur notre plateforme. Entrez votre numéro de transaction et votre code secret pour planifier le passage de notre agent. Vous recevez l'argent immédiatement lors de la collecte de l'article.</p>
+            </div>
+            
+            <!-- ÉTAPE 1 : Formulaire d'identification du vendeur -->
+            <div class="card Vendor-card" id="step-1-card">
+                <h2>Espace Vendeur</h2>
+                <p class="subtitle">Entrez votre numéro de transaction et le code à 4 chiffres</p>
+                
+                <form id="vendor-auth-form" novalidate>
+                    <div class="form-group">
+                        <label for="tracking-number">Numéro de transaction</label>
+                        <input type="text" id="tracking-number" placeholder="Ex: TF-9876-5432" required>
+                        <span class="error-message" id="tracking-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="security-code">Code secret vendeur (4 chiffres)</label>
+                        <input type="password" id="security-code" maxlength="4" placeholder="••••" required>
+                        <span class="error-message" id="code-error"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Valider</button>
+                </form>
+                <div id="api-status" class="status-box hidden"></div>
+            </div>
+
+            <!-- ÉTAPE 2 : Formulaire de prise de rendez-vous (Masqué par défaut) -->
+            <div class="card appointment-card hidden" id="step-2-card">
+                <span class="badge-step">Étape 2 sur 2</span>
+                <h2>Planifier la collecte</h2>
+                <p class="subtitle" id="appointment-welcome">Transaction validée. Choisissez votre créneau.</p>
+                
+                <form id="appointment-form" novalidate>
+                    <div class="form-group">
+                        <label for="collect-date">Date de passage</label>
+                        <input type="date" id="collect-date" required>
+                        <span class="error-message" id="date-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="collect-time">Créneau horaire</label>
+                        <select id="collect-time" required>
+                            <option value="">-- Sélectionner un créneau --</option>
+                            <option value="morning">Matin (08h00 - 12h00)</option>
+                            <option value="afternoon">Après-midi (12h00 - 17h00)</option>
+                            <option value="evening">Soirée (17h00 - 20h00)</option>
+                        </select>
+                        <span class="error-message" id="time-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="collect-address">Confirmation de votre adresse de collecte</label>
+                        <textarea id="collect-address" rows="2" placeholder="123 Rue du Commerce, 75001 Paris" required></textarea>
+                        <span class="error-message" id="address-error"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit btn-accent">Confirmer le rendez-vous contre paiement</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOUVELLE SECTION : Partenaires de confiance -->
+    <section class="partners-section">
+        <div class="container partners-container">
+            <p class="partners-title">Compatible avec vos ventes sur</p>
+            <div class="partners-logos">
+                <div class="partner-logo-box">
+                    <img src="images/lbc.jpg" alt="lbc" class="partner-img">
+                    <span class="partner-name">leboncoin</span>
+                </div>
+                <div class="partner-logo-box">
+                    <img src="images/vint.jpg" alt="Vint" class="partner-img">
+                    <span class="partner-name">Vinted</span>
+                </div>
+                <div class="partner-logo-box">
+                    <img src="images/trans1.png" alt="Vint" class="partner-img">
+                    <span class="partner-name">Vinted</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section explicative avec Photos/Illustrations -->
+    <section class="features-section" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Le processus de collecte pour le vendeur</h2>
+            <div class="features-grid">
+                
+                <!-- Étape 1 -->
+                <div class="feature-card">
+                    <div class="image-wrapper">
+                        <img src="images/19.jpg" alt="Notification de dépôt des fonds" class="feature-image">
+                        <div class="icon-circle">1</div>
+                    </div>
+                    <h3>L'acheteur paie en ligne</h3>
+                    <p>Les fonds de la vente sont bloqués en toute sécurité sur notre plateforme. Vous recevez votre numéro de transaction et le code à 4 chiffres.</p>
+                </div>
+                
+                <!-- Étape 2 -->
+                <div class="feature-card">
+                    <div class="image-wrapper">
+                        <img src="images/18.jpg" alt="Planification du rendez-vous" class="feature-image">
+                        <div class="icon-circle">2</div>
+                    </div>
+                    <h3>Planification du RDV</h3>
+                    <p>Vous utilisez le formulaire en ligne sur notre site pour planifier le jour et l'heure de passage de notre agent pour la collecte et le paiement.</p>
+                </div>
+                
+                <!-- Étape 3 -->
+                <div class="feature-card">
+                    <div class="image-wrapper">
+                        <img src="images/delivery.png" alt="Échange article contre argent" class="feature-image">
+                        <div class="icon-circle">3</div>
+                    </div>
+                    <h3>Argent remis en main propre</h3>
+                    <p>Notre agent valide l'état de l'objet, vous remet le montant de la vente immédiatement en cash ou virement instantané, puis emporte l'article.</p>
+                </div>
+
+
+
+                
+
+        </div>
+
+            <div class="hero-text2">
+                <h1>Le retrait de colis contre paiement, comment ça marche ?</h1>
+                <p>L’option de contre paiement donne une responsabilité au transporteur de payer à notre nom le prix de vente de l’article à expédier. Le colis ainsi vendu se règle directement entre le transporteur et le vendeur au moment du retrait du colis. Le transporteur aura ensuite pour mission de rapporter le colis à l’acheteur.</p>
+            <h2>La solution simple et sécurisée pour payer et être payé.</h2>
+            <p> <strong>Exemple:</strong> Pierre veut acheter un ordinateur à un particulier, il décide de payer l'article en choisissant l’option « contre paiement de Achat-Transport ». Ainsi un transporteur de Achat-Transport se rend chez le vendeur selon la date et l'heure choisies par celui-ci pour lui remettre le montant conclu pendant la close de la vente et récupère l'article pour l'envoyer à PIERRE. Le vendeur donnera le colis au transporteur Achat-Transport uniquement après avoir reçu la somme que pierre a convenu avec lui et qui est indiquée sur la feuille d’envoi. Le vendeur signera un bon de règlement et l'article est ensuite récupéré et envoyé à Pierre par le transporteur de Achat-Transport.</p>
+              <br>
+              <br>  
+            <ol>
+                <li>Achat-Transport met en place une assurance au profit du vendeur couvrant la valeur monétaire réelle de toute perte ou de tout préjudice matériel affectant l’envoi.</li>
+                <li>Les transactions sur Achat-transport sont garanties 100%.</li>
+                <li>Faites confiance à Achat-Transport pour le paiement à la collecte de vos colis.</li>
+                <li>Le contre-paiement est un système de paiement où le paiement est effectué à la collecte de l'article.</li>
+
+            </ol>
+        </div>
+
+                                
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Achat-Transport. Espace Vendeur Sécurisé.</p>
+        </div>
+    </footer>
+
+        <!-- ==========================================================================
+       WIDGET CHAT SERVICE CLIENTELE FLOUTÉ
+       ========================================================================== -->
+    <div id="Achat-Transport-chat-widget" class="chat-widget-container">
+        <!-- Bulle d'activation flottante -->
+        <button id="chat-trigger-btn" class="chat-trigger-button">
+            <span class="chat-icon-open">💬</span>
+            <span class="chat-icon-close hidden">✖</span>
+        </button>
+
+        <!-- Fenêtre de messagerie -->
+        <div id="chat-window" class="chat-window-box hidden">
+            <div class="chat-window-header">
+                <div class="chat-agent-avatar">🤝</div>
+                <div>
+                    <h4>Assistance Achat-Transport</h4>
+                    <p class="chat-agent-status">● En ligne</p>
+                </div>
+            </div>
+            
+            <!-- Zone d'affichage des messages -->
+            <div id="chat-messages-body" class="chat-messages-container">
+                <div class="message-bubble agent-message">
+                  <!--   Bonjour ! Comment puis-je vous aider aujourd'hui concernant la planification de la collecte de votre colis ?  -->
+                </div>
+            </div>
+
+            <!-- Formulaire d'envoi -->
+            <form id="chat-input-form" class="chat-footer-form">
+               <textarea id="chat-user-text" placeholder="Écrivez votre message..." required rows="1"></textarea>
+                <button type="submit" class="chat-send-btn">➤</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="js/script.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>
