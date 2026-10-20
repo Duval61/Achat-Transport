@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             apiStatus.classList.remove('hidden');
 
             // --- CONNEXION REELLE A L'API BACKEND ---
-            const response = await fetch('http://54.247.248.45:5000/api/v1/vendor/verify', {
+            const response = await fetch('/api/get-data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
