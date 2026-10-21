@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variables pour gérer l'état de la connexion WebSocket
     let ws = null;
     let isChatInitialized = false;
+    let reconnectTimeout ;
+
 
         // À ajouter à l'intérieur du DOMContentLoaded de chat.js :
     const userTextarea = document.getElementById('chat-user-text');
@@ -61,6 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FONCTION DE SÉCURISATION ET CONNEXION À LA DEMANDE ---
     function initializeChatConnection() {
+
+        console.log("connection initialization");
+        
         if (isChatInitialized) return; // Évite les connexions multiples si déjà connecté
 
         // Établissement de la connexion WebSocket uniquement maintenant
@@ -68,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ws.onopen = () => {
             // Authentification auprès du serveur WebSocket
+            clearTimeout(reconnectTimeout);
             ws.send(JSON.stringify({ type: 'auth', role: 'client', trackingNumber: trackingNumber }));
             // Chargement de l'historique depuis la base de données MySQL
             loadClientChatHistory();
@@ -76,6 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
 // ... [À insérer à l'intérieur de ws.onmessage dans votre fichier chat.js] ...
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
+
+                    // Handle the cross-browser heartbeat
+            if (data.type === 'ping') {
+                // Reply immediately to keep the server connection alive
+                console.log("ping");
+                
+                if (socket.readyState === WebSocket.OPEN) {
+                    socket.send(JSON.stringify({ type: 'pong' }));
+                }
+                return; // Stop processing so it doesn't show up in the chat window
+            }
 
             // GESTION DYNAMIQUE DE L'INDICATEUR D'ENTÊTE
             if (data.type === 'support_status') {
@@ -102,6 +119,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+
+        ws.onclose = (event) => {
+            console.log(`Socket closed. Reason: ${event.reason}. Reconnecting in 3 seconds...`);
+            
+            // Prevent multiple simultaneous reconnect loops
+            clearTimeout(reconnectTimeout); 
+            
+            // Automatically try to reconnect after 3 seconds
+            reconnectTimeout = setTimeout(() => {
+                isChatInitialized = false;
+                initializeChatConnection();
+            }, 3000);
+
+        };
+
+
+        ws.onerror = (error) => {
+        console.error("WebSocket encountered an error: ", error);
+        ws.close(); // Force close to trigger the onclose reconnect loop
+        }
 
         isChatInitialized = true;
         console.log(`[TrustFetch] Connexion WebSocket établie à la demande pour : ${trackingNumber}`);
