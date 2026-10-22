@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reply immediately to keep the server connection alive
                 console.log("ping");
                 
-                if (socket.readyState === WebSocket.OPEN) {
-                    socket.send(JSON.stringify({ type: 'pong' }));
+                if (ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({ type: 'pong' }));
                 }
                 return; // Stop processing so it doesn't show up in the chat window
             }
