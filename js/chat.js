@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         ws.onclose = (event) => {
-            console.log(`Socket closed. Reason: ${event.reason}. Reconnecting in 3 seconds...`);
+            console.log(`Socket closed. Reason: ${event}. Reconnecting in 500 milliseconds...`, event);
             
             // Prevent multiple simultaneous reconnect loops
             clearTimeout(reconnectTimeout); 
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             reconnectTimeout = setTimeout(() => {
                 isChatInitialized = false;
                 initializeChatConnection();
-            }, 3000);
+            }, 500);
 
         };
 
