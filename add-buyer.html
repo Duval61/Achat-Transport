@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustFetch - Enregistrer une Vente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="header no-print">
+        <div class="container navbar">
+            <a href="index.html" class="logo">🤝 Trust<span>Fetch</span></a>
+            <nav class="nav-links">
+                <span class="user-welcome">Espace Administration</span>
+                <a href="index.html" class="btn-primary logout-btn">Accueil</a>
+            </nav>
+        </div>
+        
+
+    <!-- Injection de QRCode.js pour générer les QR codes directement en local -->
+    <script src="https://cloudflare.com" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4bBLpmG50eeoLIvuM46pY5cajBN5eE7W6DGwEl3XcyOMWqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    </header>
+
+    <!-- Zone principale unifiée avec alignement block centré -->
+    <main class="dashboard-section verification-page-wrapper">
+        <div class="admin-container-80">
+            
+            <section class="shadow-card">
+                
+                <!-- Zone Dynamique : Formulaire ou Reçu final -->
+                <div id="admin-dynamic-content">
+                    <div class="card-header">
+                        <span class="badge-status" style="background-color: #e0e7ff; color: #4338ca;">Backoffice</span>
+                        <h2>Enregistrer un nouvel acheteur</h2>
+                        <p class="subtitle">Créez une nouvelle fiche de transaction séquestre pour <strong>TrustFetch Inc.</strong></p>
+                    </div>
+
+                    <form id="add-buyer-form" novalidate>
+                        
+                        <div class="form-group">
+                            <label for="generated-id">ID de transaction (Généré automatiquement)</label>
+                            <input type="text" id="generated-id" readonly style="background-color: #e2e8f0; font-family: monospace; font-weight: bold; color: var(--brand-color);">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sale-site">Site de vente</label>
+                            <select id="sale-site" required>
+                                <option value="">-- Sélectionner la plateforme --</option>
+                                <option value="Leboncoin">Leboncoin</option>
+                                <option value="Vinted">Vinted</option>
+                                <option value="Autre">Autre plateforme / Réseaux sociaux</option>
+                            </select>
+                            <span class="error-message" id="sale-site-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="article-name">Désignation de l'article</label>
+                            <input type="text" id="article-name" placeholder="Ex: Vélo de course Scott Speedster" required>
+                            <span class="error-message" id="article-name-error"></span>
+                        </div>
+
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="article-price">Prix de l'article (€)</label>
+                                <input type="number" id="article-price" step="0.01" min="0" placeholder="Ex: 450.00" required>
+                                <span class="error-message" id="article-price-error"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="service-fees">Frais de service TrustFetch (€)</label>
+                                <input type="number" id="service-fees" step="0.01" min="0" placeholder="Ex: 15.00" required>
+                                <span class="error-message" id="service-fees-error"></span>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit btn-accent">Créer la transaction et notifier le vendeur</button>
+                    </form>
+                </div>
+
+                <div id="admin-api-status" class="status-box hidden no-print"></div>
+            </section>
+            
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer no-print">
+        <div class="container">
+            <p>&copy; 2026 TrustFetch Inc. Espace Vendeur Sécurisé.</p>
+        </div>
+    </footer>
+
+    <script src="add-buyer.js"></script>
+</body>
+</html>
